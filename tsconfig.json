@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./lib",
+    "esModuleInterop": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strict": false
+  },
+  "include": ["src/*.ts", "src/cli.js"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
