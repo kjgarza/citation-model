@@ -4,18 +4,15 @@ import Cff from "./cff";
 
 const [,, ...args] = process.argv;
 
-const codeMeta = new CodeMeta();
-
-// codeMeta.update("licenseId", "IDFDSFS")
-// codeMeta.update("description", "My Cool project")
-// codeMeta.update("publisher", "Kalkuta")
-// codeMeta.update("readme", "http://gituhub")
-
-// codeMeta.save("./codemeta_2.json");
-
-codeMeta.generateFromNode()
-
-
-const cff = new Cff();
-
-cff.generateFromCodeMeta();
+switch (args[0]) {
+  case "cff":
+    const cff = new Cff();
+    break;
+  case "codemeta":
+    const codeMeta = new CodeMeta();
+    codeMeta.generateFromNode()
+    break;
+  default:
+  console.log("no input")
+    break
+}

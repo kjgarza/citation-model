@@ -43,8 +43,8 @@ class CodeMeta{
     this.set("operatingSystem",	data.os || "");
     this.set("processorRequirements",	data.cpu || data.engines || "");
     this.set("softwareRequirements",	data.dependencies || data.bundledDependencies || data.peerDependencies || "");
-    this.set("author",	data.author || "");
-    this.set("contributor",	data.contributor || "");
+    this.set("author",	data.author || []);
+    this.set("contributor",	data.contributor || []);
     this.set("creator",	data.author || "");
     this.set("keywords",	data.keywords || "");
     this.set("license",	data.license || "");
@@ -52,6 +52,7 @@ class CodeMeta{
     this.set("description",	data.description || "");
     this.set("identifier", data.name || "");
     this.set("name",	data.name || "");
+    this.set("title",	data.name || "");
     this.set("email",	data.author.email || "");
     this.set("name", data.author.name || "");
     this.set("softwareSuggestions",	data.devDependencies || data.optionalDependencies || "");
@@ -83,7 +84,7 @@ class CodeMeta{
     this.set("codeRepository",	data.html_url || ""); 
     this.set("programmingLanguage", data.languages_url || ""); 
     this.set("downloadUrl", data.archive_url || ""); 
-    this.set("author", data.login || ""); 
+    this.set("author", data.login || []); 
     this.set("dateCreated", data.created_at || ""); 
     this.set("dateModified", data.updated_at || ""); 
     this.set("license", data.license || ""); 
@@ -94,19 +95,6 @@ class CodeMeta{
 
     this.save()
   }
-
-
-  // generatefromPython() {
-  //   const codeMeta = new CodeMeta("yes");
-  //   const data = codeMeta.getData();
-  //   this.set("title", data.title || "");
-  //   this.set("version", data.version || "");
-  //   this.set("doi", data.identifier || "");
-  //   this.set("date-released", data.title || "");
-  //   this.set("url", data.readme || "");
-  //   this.save()
-  // }
-
 }
 
 export default CodeMeta;

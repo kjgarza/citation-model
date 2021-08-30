@@ -12,10 +12,11 @@ class Cff{
         break;
       case fs.existsSync("./codemeta.json"):
         this.data = yaml.load(fs.readFileSync("./lib/files/CITATION.yml", "utf8"));
-        this.generateFromCodeMeta
+        this.generateFromCodeMeta()
         break;
       default:
         this.data = yaml.load(fs.readFileSync("./lib/files/CITATION.yml", "utf8"));
+        this.generateFromCodeMeta()
     }
   }
 
@@ -35,12 +36,31 @@ class Cff{
   generateFromCodeMeta() {
     const codeMeta = new CodeMeta();
     const data = codeMeta.getData();
+    const authors = this.mapAgents(data.agents || data.author || data.contributor);
+    this.set("authors", authors || []);
     this.set("title", data.title || "");
     this.set("version", data.version || "");
     this.set("doi", data.identifier || "");
     this.set("date-released", data.datePublished || "");
     this.set("url", data.issueTracker || "");
     this.save()
+  }
+
+
+  mapAgents(agents){
+    const authors = agents.map(this.authorFromAgent)
+    return authors
+  }
+
+  authorFromAgent(agent){
+    var parseFullName = require('parse-full-name').parseFullName;
+    const name = parseFullName(agent["name"]);
+
+    const author = {}
+    author["orcid"] = agent["@id"]
+    author["family-name"] = name.last
+    author["give-name"] = name.first
+    return author;
   }
 
   save() {

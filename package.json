@@ -40,6 +40,7 @@
   "dependencies": {
     "@babel/preset-typescript": "^7.15.0",
     "js-yaml": "^4.1.0",
+    "parse-full-name": "^1.2.5",
     "scaffold-npm": "^1.1.2"
   },
   "lint-staged": {
