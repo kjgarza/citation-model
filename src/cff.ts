@@ -57,9 +57,9 @@ class Cff{
     const name = parseFullName(agent["name"]);
 
     const author = {}
+    author["family-names"] = name.last
+    author["given-names"] = name.first
     author["orcid"] = agent["@id"]
-    author["family-name"] = name.last
-    author["give-name"] = name.first
     return author;
   }
 
