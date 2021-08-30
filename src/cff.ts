@@ -42,7 +42,7 @@ class Cff{
     this.set("version", data.version || "");
     this.set("doi", data.identifier || "");
     this.set("date-released", data.datePublished || "");
-    this.set("url", data.issueTracker || "");
+    this.set("url", data.issueTracker.url || "");
     this.save()
   }
 

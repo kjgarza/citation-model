@@ -35,6 +35,11 @@ class CodeMeta{
     fs.writeFileSync("./codemeta.json", JSON.stringify(this.data, null, 2));
   }
 
+  addAuthor(author: object){
+    const authors = this.get("author");
+    this.set("author", authors.push(author));
+  }
+
   generateFromNode() {
     const node = new Package("node");
     const data = node.getData();
@@ -67,7 +72,7 @@ class CodeMeta{
     this.set("codeRepository", data.homepage || "");
     this.set("runtimePlatform", data.platform || "");
     this.set("softwareRequirements", data.requirements || data.add_runtime_dependency || "");
-    this.set("author", data.author || "");
+    this.set("author", data.author || []);
     this.set("license", data.license || data.licenses || "");
     this.set("version", data.version || "");
     this.set("description", data.summary || data.description || "");
