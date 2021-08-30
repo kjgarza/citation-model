@@ -4,8 +4,6 @@
   "description": "JS Library that create a model around citations files",
   "homepage": "",
   "author": "Kristian Garza",
-  "type": "module",
-  "bin": "cli.js",
   "files": [
     "lib"
   ],
@@ -34,11 +32,14 @@
   "scripts": {
     "test": "jest",
     "pretest": "eslint .",
+    "my-script": "ts-node ./src/cli.ts",
     "build": "tsc"
   },
+  "bin": "cli.js",
   "license": "MIT",
   "dependencies": {
     "@babel/preset-typescript": "^7.15.0",
+    "js-yaml": "^4.1.0",
     "scaffold-npm": "^1.1.2"
   },
   "lint-staged": {
