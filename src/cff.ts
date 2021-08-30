@@ -64,7 +64,7 @@ class Cff{
   }
 
   save() {
-    fs.writeFileSync("./CITATION.cff", yaml.dump(this.data), { flag: 'wx' });
+    fs.writeFileSync("./CITATION.cff", yaml.dump(this.data, {forceQuotes: true}), { flag: 'wx' });
   }
 }
 
