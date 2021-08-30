@@ -1,0 +1,112 @@
+import * as fs from "fs";
+import Package from "./package";
+
+class CodeMeta{
+  data: any;
+
+  constructor() {
+    switch (true) {
+      case fs.existsSync("./codemeta.json"):
+        this.data = JSON.parse(fs.readFileSync("./codemeta.json", "utf8"));
+        break;
+      default:
+        this.data = JSON.parse(fs.readFileSync("./lib/files/codemeta.json", "utf8"));
+    }
+  }
+
+  get(key: string) {
+    return this.data[key];
+  }
+  
+  getData() {
+    return this.data;
+  }
+
+  set(key: string, value: string) {
+    this.data[key] = value;
+  }
+
+  update(key: string, value: string) {
+    this.data[key] = value;
+    fs.writeFileSync("./codemeta.json", JSON.stringify(this.data, null, 2));
+  }
+
+  save() {
+    fs.writeFileSync("./codemeta.json", JSON.stringify(this.data, null, 2));
+  }
+
+  generateFromNode() {
+    const node = new Package("node");
+    const data = node.getData();
+
+    this.set("codeRepository",data.repository || "");
+    this.set("operatingSystem",	data.os || "");
+    this.set("processorRequirements",	data.cpu || data.engines || "");
+    this.set("softwareRequirements",	data.dependencies || data.bundledDependencies || data.peerDependencies || "");
+    this.set("author",	data.author || "");
+    this.set("contributor",	data.contributor || "");
+    this.set("creator",	data.author || "");
+    this.set("keywords",	data.keywords || "");
+    this.set("license",	data.license || "");
+    this.set("version", 	data.version || "");
+    this.set("description",	data.description || "");
+    this.set("identifier", data.name || "");
+    this.set("name",	data.name || "");
+    this.set("email",	data.author.email || "");
+    this.set("name", data.author.name || "");
+    this.set("softwareSuggestions",	data.devDependencies || data.optionalDependencies || "");
+    this.set("issueTracker", data.bugs || "");
+    this.save()
+  }
+
+  generatefromGemset() {
+   const gemset = new Package("ruby");
+    const data = gemset.getData();
+
+    this.set("codeRepository", data.homepage || "");
+    this.set("runtimePlatform", data.platform || "");
+    this.set("softwareRequirements", data.requirements || data.add_runtime_dependency || "");
+    this.set("author", data.author || "");
+    this.set("license", data.license || data.licenses || "");
+    this.set("version", data.version || "");
+    this.set("description", data.summary || data.description || "");
+    this.set("name", data.name || "");
+    this.set("email", data.email || "");
+    this.set("softwareSuggestions", data.add_development_dependency || "");
+    this.save()
+  }
+
+  generatefromGithub() {
+    const github = new Package("github");
+    const data = github.getData();
+
+    this.set("codeRepository",	data.html_url || ""); 
+    this.set("programmingLanguage", data.languages_url || ""); 
+    this.set("downloadUrl", data.archive_url || ""); 
+    this.set("author", data.login || ""); 
+    this.set("dateCreated", data.created_at || ""); 
+    this.set("dateModified", data.updated_at || ""); 
+    this.set("license", data.license || ""); 
+    this.set("description", data.description || ""); 
+    this.set("identifier", data.id || ""); 
+    this.set("name", data.full_name || ""); 
+    this.set("issueTracker", data.issues_url || ""); 
+
+    this.save()
+  }
+
+
+  // generatefromPython() {
+  //   const codeMeta = new CodeMeta("yes");
+  //   const data = codeMeta.getData();
+  //   this.set("title", data.title || "");
+  //   this.set("version", data.version || "");
+  //   this.set("doi", data.identifier || "");
+  //   this.set("date-released", data.title || "");
+  //   this.set("url", data.readme || "");
+  //   this.save()
+  // }
+
+}
+
+export default CodeMeta;
