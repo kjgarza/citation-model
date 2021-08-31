@@ -2,7 +2,7 @@
   "name": "citation-model",
   "version": "1.0.0",
   "description": "JS Library that create a model around citations files",
-  "homepage": "",
+  "homepage": "https://github.com/kjgarza/citation-model#readme",
   "author": "Kristian Garza",
   "files": [
     "lib"
@@ -35,7 +35,9 @@
     "my-script": "ts-node ./src/cli.ts",
     "build": "tsc"
   },
-  "bin": "cli.js",
+  "bin": {
+    "citation-model": "cli.js"
+  },
   "license": "MIT",
   "dependencies": {
     "@babel/preset-typescript": "^7.15.0",
@@ -74,8 +76,17 @@
       "prettier"
     ]
   },
-  "repository": "kjgarza/citation-model",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjgarza/citation-model.git"
+  },
   "jest": {
     "testEnvironment": "node"
+  },
+  "bugs": {
+    "url": "https://github.com/kjgarza/citation-model/issues"
+  },
+  "directories": {
+    "lib": "lib"
   }
 }
