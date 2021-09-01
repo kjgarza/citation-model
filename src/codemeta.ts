@@ -1,6 +1,15 @@
 import * as fs from "fs";
 import Package from "./package";
 
+
+interface Author {
+  'family-names'?: string;
+  'given-names'?: string;
+  orcid?: string;
+  name?: string;
+  email?: string;
+}
+
 class CodeMeta{
   data: any;
 
@@ -14,33 +23,33 @@ class CodeMeta{
     }
   }
 
-  get(key: string) {
+  get(key: string): any {
     return this.data[key];
   }
   
-  getData() {
+  getData(): Record<string, any>{
     return this.data;
   }
 
-  set(key: string, value: string) {
+  set(key: string, value: Record<string, any>): void {
     this.data[key] = value;
   }
 
-  update(key: string, value: string) {
+  update(key: string, value: Record<string, any>): void {
     this.data[key] = value;
     fs.writeFileSync("./codemeta.json", JSON.stringify(this.data, null, 2));
   }
 
-  save() {
+  save(): void {
     fs.writeFileSync("./codemeta.json", JSON.stringify(this.data, null, 2));
   }
 
-  addAuthor(author: object){
+  addAuthor(author:  Author):  void{
     const authors = this.get("author");
     this.set("author", authors.push(author));
   }
 
-  generateFromNode() {
+  generateFromNode(): void  {
     const node = new Package("node");
     const data = node.getData();
 
@@ -65,7 +74,7 @@ class CodeMeta{
     this.save()
   }
 
-  generatefromGemset() {
+  generatefromGemset(): void  {
    const gemset = new Package("ruby");
     const data = gemset.getData();
 
@@ -82,7 +91,7 @@ class CodeMeta{
     this.save()
   }
 
-  generatefromGithub() {
+  generatefromGithub(): void {
     const github = new Package("github");
     const data = github.getData();
 

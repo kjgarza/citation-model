@@ -27,15 +27,15 @@ class Package{
 
   }
 
-  get(key: string) {
+  get(key: string): any {
     return this.data[key];
   }
   
-  getData() {
+  getData(): Record<string, any> {
     return this.data;
   }
 
-  set(key: string, value: string) {
+  set(key: string, value: Record<string, any>): void {
     this.data[key] = value;
   }
 }

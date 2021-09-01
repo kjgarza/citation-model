@@ -1,9 +1,17 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
+
 import * as fs from "fs";
 import * as yaml from "js-yaml";
 import CodeMeta from "./codemeta";
 
+interface Author {
+  "family-names"?: string;
+  "given-names"?: string;
+  orcid?: string;
+}
+
 class Cff{
-  data: any;
+  data: Record<string, any>;
 
   constructor() {
     switch (true) {
@@ -12,28 +20,27 @@ class Cff{
         break;
       case fs.existsSync("./codemeta.json"):
         this.data = yaml.load(fs.readFileSync("./lib/files/CITATION.yml", "utf8"));
-        this.generateFromCodeMeta()
         break;
       default:
         this.data = yaml.load(fs.readFileSync("./lib/files/CITATION.yml", "utf8"));
-        this.generateFromCodeMeta()
     }
+    // this.generateFromCodeMeta()
   }
 
-  get(key: string) {
+  get(key: string): Record<string, any> {
     return this.data[key];
   }
 
-  set(key: string, value: string) {
+  set(key: string, value: Record<string, any>): void {
     this.data[key] = value;
   }
 
-  update(key: string, value: string) {
+  update(key: string, value: string): void {
     this.data[key] = value;
     fs.writeFileSync("./CITATION.cff", yaml.dump(this.data));
   }
 
-  generateFromCodeMeta() {
+  generateFromCodeMeta(): void {
     const codeMeta = new CodeMeta();
     const data = codeMeta.getData();
     const authors = this.mapAgents(data.agents || data.author || data.contributor);
@@ -47,23 +54,23 @@ class Cff{
   }
 
 
-  mapAgents(agents){
+  mapAgents(agents: Array<Author>): Array<Author> {
     const authors = agents.map(this.authorFromAgent)
     return authors
   }
 
-  authorFromAgent(agent){
-    var parseFullName = require('parse-full-name').parseFullName;
+  authorFromAgent(agent: Author): Author {
+    const parseFullName = require('parse-full-name').parseFullName;
     const name = parseFullName(agent["name"]);
 
-    const author = {}
+    const author: Author = {}
     author["family-names"] = name.last
     author["given-names"] = name.first
     author["orcid"] = agent["@id"]
     return author;
   }
 
-  save() {
+  save(): void {
     fs.writeFileSync("./CITATION.cff", yaml.dump(this.data, {forceQuotes: true}), { flag: 'wx' });
   }
 }
