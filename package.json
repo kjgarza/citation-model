@@ -39,7 +39,7 @@
     "local": "ts-node ./src/cli.ts",
     "lint": "eslint . --ext .ts",
     "start": "./lib/cli.js",
-    "build": "tsc"
+    "build": "tsc | cp -r templates ./lib"
   },
   "bin": {
     "citation-model": "./lib/cli.js"
