@@ -35,12 +35,13 @@
   "scripts": {
     "test": "jest",
     "pretest": "eslint . --ext .ts",
-    "my-script": "ts-node ./src/cli.ts",
+    "local": "ts-node ./src/cli.ts",
     "lint": "eslint . --ext .ts",
+    "start": "./lib/cli.js",
     "build": "tsc"
   },
   "bin": {
-    "citation-model": "cli.js"
+    "citation-model": "./lib/cli.js"
   },
   "license": "MIT",
   "dependencies": {
