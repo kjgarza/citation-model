@@ -19,10 +19,10 @@ class Cff{
         this.data = yaml.load(fs.readFileSync("./CITATION.cff", "utf8"));
         break;
       case fs.existsSync("./codemeta.json"):
-        this.data = yaml.load(fs.readFileSync("./lib/files/CITATION.yml", "utf8"));
+        this.data = yaml.load(fs.readFileSync("./templates/CITATION.yml", "utf8"));
         break;
       default:
-        this.data = yaml.load(fs.readFileSync("./lib/files/CITATION.yml", "utf8"));
+        this.data = yaml.load(fs.readFileSync("./templates/CITATION.yml", "utf8"));
     }
     // this.generateFromCodeMeta()
   }

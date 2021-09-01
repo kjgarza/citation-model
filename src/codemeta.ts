@@ -19,7 +19,7 @@ class CodeMeta{
         this.data = JSON.parse(fs.readFileSync("./codemeta.json", "utf8"));
         break;
       default:
-        this.data = JSON.parse(fs.readFileSync("./lib/files/codemeta.json", "utf8"));
+        this.data = JSON.parse(fs.readFileSync("./templates/codemeta.json", "utf8"));
     }
   }
 
