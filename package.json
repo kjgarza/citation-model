@@ -5,7 +5,8 @@
   "homepage": "https://github.com/kjgarza/citation-model#readme",
   "author": "Kristian Garza",
   "files": [
-    "lib"
+    "lib",
+    "templates"
   ],
   "main": "index.js",
   "keywords": [
