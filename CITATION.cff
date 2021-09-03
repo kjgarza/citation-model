@@ -5,7 +5,7 @@ authors:
     given-names: 'Kristian'
     orcid: 'https://orcid.org/0000-0003-3484-6875'
 title: 'citation-model'
-version: '1.0.0'
+version: '1.0.10'
 doi: 'citation-model'
 date-released: ''
 url: 'https://github.com/kjgarza/citation-model/issues'
