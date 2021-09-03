@@ -1,6 +1,6 @@
 {
   "name": "citation-model",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "JS Library that create a model around citations files",
   "homepage": "https://github.com/kjgarza/citation-model#readme",
   "author": "Kristian Garza",
