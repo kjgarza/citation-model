@@ -67,8 +67,8 @@ class CodeMeta{
     this.set("identifier", data.name || "");
     this.set("name",	data.name || "");
     this.set("title",	data.name || "");
-    this.set("email",	data.author.email || "");
-    this.set("name", data.author.name || "");
+    this.set("email",	data.author ? data.author.email : "");
+    this.set("name", data.author ? data.author.name : "");
     this.set("softwareSuggestions",	data.devDependencies || data.optionalDependencies || "");
     this.set("issueTracker", data.bugs || "");
     this.save()
