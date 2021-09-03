@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import Package from "./package";
-
+import jsonfile from "./templates/codemeta.json"
 
 interface Author {
   'family-names'?: string;
@@ -19,7 +19,7 @@ class CodeMeta{
         this.data = JSON.parse(fs.readFileSync("./codemeta.json", "utf8"));
         break;
       default:
-        this.data = JSON.parse(fs.readFileSync("./templates/codemeta.json", "utf8"));
+        this.data = jsonfile;
     }
   }
 

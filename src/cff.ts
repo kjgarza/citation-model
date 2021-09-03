@@ -3,6 +3,7 @@
 import * as fs from "fs";
 import * as yaml from "js-yaml";
 import CodeMeta from "./codemeta";
+import templateFile from "./templates/CITATION.json"
 
 interface Author {
   "family-names"?: string;
@@ -19,10 +20,10 @@ class Cff{
         this.data = yaml.load(fs.readFileSync("./CITATION.cff", "utf8"));
         break;
       case fs.existsSync("./codemeta.json"):
-        this.data = yaml.load(fs.readFileSync("./templates/CITATION.yml", "utf8"));
+        this.data = templateFile;
         break;
       default:
-        this.data = yaml.load(fs.readFileSync("./templates/CITATION.yml", "utf8"));
+        this.data = templateFile;
     }
     // this.generateFromCodeMeta()
   }
@@ -71,7 +72,7 @@ class Cff{
   }
 
   save(): void {
-    fs.writeFileSync("./CITATION.cff", yaml.dump(this.data, {forceQuotes: true}), { flag: 'wx' });
+    fs.writeFileSync("./CITATION.cff", yaml.dump(this.data, {forceQuotes: true}));
   }
 }
 

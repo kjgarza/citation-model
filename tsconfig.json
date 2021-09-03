@@ -6,7 +6,8 @@
     "outDir": "./lib",
     "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true,
-    "strict": false
+    "strict": false,
+    "resolveJsonModule": true
   },
   "include": ["src/*.ts", "src/cli.js"],
   "exclude": ["node_modules", "**/__tests__/*"]
