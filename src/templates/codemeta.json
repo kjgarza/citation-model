@@ -21,6 +21,9 @@
   "dateModified": "",
   "description": "",
   "isAutomatedBuild": "",
+  "issueTracker":{
+    "url":""
+  },
   "licenseId": "",
   "publisher": "",
   "version": "",

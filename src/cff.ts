@@ -43,6 +43,7 @@ class Cff{
 
   generateFromCodeMeta(): void {
     const codeMeta = new CodeMeta();
+    codeMeta.generateFromNode();
     const data = codeMeta.getData();
     const authors = this.mapAgents(data.agents || data.author || data.contributor);
     this.set("authors", authors || []);
